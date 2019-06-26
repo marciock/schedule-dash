@@ -1,0 +1,47 @@
+ <!-- Modal Structure -->
+ <div id="modalnews" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Nova Rotina</h4>
+      <p>Crie uma nova rotina</p>
+      <div class="row">
+          <div class="input-field col s12 ">
+              <input  id="title"  placeholder="Descreva a rotina" type="text" class="validate "  name="title" autofocus \>
+              <label for="titulo">Título</label>
+          </div>
+          <div class="input-field col s6 m4">
+              <input  id="dateend"  type="date" class="date"  name="dateend" \>
+              <label for="dateend">Data da Finalização</label>
+          </div>
+          <div class="input-field col s12">
+              <textarea id="description" class="materialize-textarea" name="description"></textarea>
+              <label for="description">Descrição/ Status</label>
+          </div>
+      </div>
+      
+    
+
+    
+    </div>
+    <div class="modal-footer">
+        <button class="modal-close waves-effect waves-green btn-flat" id="new-cancel">Cancelar</button>
+        <button class="modal-close waves-effect waves-green btn-flat" id="new-ok">OK</button>
+    </div>
+ 
+  </div>
+  <script>
+      const newCancel=document.getElementById('new-cancel');
+     
+
+       newCancel.addEventListener('click',()=>{
+          const title=document.getElementById('title');
+         // console.log(tablesinput)
+          title.value=null;
+         
+          
+        })
+
+    
+
+
+
+    </script>

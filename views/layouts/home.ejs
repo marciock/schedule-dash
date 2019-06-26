@@ -1,0 +1,168 @@
+<%- contentFor('body') %>
+
+
+
+<div class="row">
+        <div class="col s4 center-align"><span class="flow-text">Título</span></div>
+        <div class="col s2 center-align"><span class="flow-text">Inicio</span></div>
+        <div class="col s2 center-align"><span class="flow-text">Prazo</span></div>
+        <div class="col s2 center-align "><span class="flow-text">Prioridade</span></div>
+      <!--  <div class="col s2"><%- include ../widgets/dropdown %></div>-->
+   
+ </div>
+ <div class="row">
+     <ul class="collapsible popout" id="titles"> </ul>        
+    
+</div>
+    <div class="col s6 m3">
+        <div class="fixed-action-btn">
+          <button type="button" data-target="modalnews" class="btn-floating btn-large red modal-trigger" id="btn-news">
+           <i class="material-icons">add</i>
+          </button> 
+         </div>
+
+
+    </div>
+
+<%- include ../modals/modal-news %>
+
+<script src="javascripts/fetchcustom.js"></script>
+<script src="socket.io/socket.io.js"></script>
+<script>
+ 
+    const ul=document.getElementById('titles');
+    const newOk=document.getElementById('new-ok');
+    const title=document.getElementById('title');
+    const dateEnd=document.getElementById('dateend');
+    const description=document.getElementById('description');
+   
+    let priority='Alta';
+    const date=new Date();
+    const time=date.getDate();
+    
+    const now=`${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
+
+   
+    let checkable;
+
+    let deActive;
+
+    fecthFindSchedule('/find','titles');
+
+    window.onload=()=>{
+       
+
+        //modal
+        const options={opacity:0.5}
+        const elems = document.querySelectorAll('.modal');
+        const instances = M.Modal.init(elems, options);
+        const instance=M.Modal.getInstance(elems);
+
+
+        //collapsible
+        const collapsibleElement=document.querySelectorAll('.collapsible');
+        const collapsibleInstances=M.Collapsible.init(collapsibleElement,{accordion:true});
+
+        //dropdown
+        const dropElement=document.querySelectorAll('.dropdown-trigger');
+        const dropInstances=M.Dropdown.init(dropElement,{});
+
+        // começa o sochet.io       
+        const socket=io('http://localhost:3000');
+
+        newOk.addEventListener('click',()=>{
+
+                let data={
+                   title:title.value,
+                   dateactual:now,
+                   dateend:dateend.value,
+                   priority:'Alta',
+                   description:description.value,
+                   active:'true'
+                }
+
+                fetchSaveSchedule('/save',data);
+            
+            socket.emit('schedules');
+        })
+
+        // this function  deactive record of the schedule
+         deActive=(id)=>{
+
+            let data={
+                id:id,
+                active:'false'
+            }
+
+            fetchSaveSchedule('/update',data);
+            
+            socket.emit('schedules');
+        }
+
+        // save editions of the descriptions
+
+        checkable=(element,id)=>{
+        const text=document.getElementById(element).innerHTML;
+
+        let data={
+            id:id,
+            description:text
+        }
+        
+        fetchSaveSchedule('/update',data);
+
+       M.toast({html: 'Salvo com sucesso!'});
+            
+       //     socket.emit('schedules');
+       
+    }
+
+    // Emit reload of data aafter crud
+        socket.on('output',data=>{
+
+           // console.log(data);
+            let conka='';
+            
+        
+            data.map(dash => {
+
+                        
+         
+             conka +=`
+                <li>  
+                        <div class="collapsible-header">
+
+                        <div class="col s4"><p class="flow-text">${dash.title}</p></div>
+                        <div class="col s2"><p class="flow-text">${dash.dateactual}</p></div>
+                        <div class="col s2"><p class="flow-text">${dash.dateend}</p></div>
+                        <div class="col s2 center-align"><p class="flow-text">Alta</p></div>
+                        <div class="col s2 center-align">
+                            <div class="switch"> <label><input type="checkbox" checked id="${dash._id}" onchange="deActive('${dash._id}')")><span class="lever"></span></label></div>
+                        </div>
+                        </div>
+                        <div class="collapsible-body">
+                        <div> <span class="flow-text" contenteditable="true" id="descript_${dash._id}">${dash.description}</span></div>
+
+                        <div class="right">
+                         <button  class="waves-effect waves-teal btn-floating btn-small green"  onclick="checkable('descript_${dash._id}','${dash._id}')" ><i class="material-icons">check</i></button>
+                         <button  class="waves-effect waves-teal btn-floating btn-small blue"><i class="material-icons">help</i></button>
+                        </div>
+                        </div>
+                    </li>`;
+
+          //  }
+
+            }).join('')
+            
+            ul.innerHTML=conka;
+
+        })
+
+        
+
+    };
+
+   
+
+
+</script>

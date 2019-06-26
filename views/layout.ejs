@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <%- include layouts/head %>
+   
+  </head>
+  <body>
+    <header>
+       
+    </header>
+    <%- include layouts/nav %>
+    <main>
+
+
+      <div class="container">
+
+        <%- body %>
+
+      </div>
+    </main>
+    <footer>
+        
+        <%- include layouts/footer %>
+       
+    </footer>
+  </body>
+</html>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    const options={edge:'left',draggable:true}
+    const elems = document.querySelectorAll('.sidenav');
+    const instances = M.Sidenav.init(elems, options);
+
+
+   
+
+  });
+</script>

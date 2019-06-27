@@ -2,13 +2,42 @@
 <ul id="slide-out" class="sidenav" >
     <li>
         <div class="user-view">
+           
+            <a href="#" class="btn-floating btn-small waves-effect waves-light blue sidenav-close"><i class="material-icons">arrow_back</i></a>
             
-            <a href="/" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">home</i></a>
-            <a href="#name"><span class="white-text name">John Doe</span></a>
-            <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
         </div>
     </li>
-        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+    <li><div class="divider"></div></li>
+
+        <li class="no-paddin">
+            <ul class="collapsible collapsible-accordion">
+                <li>
+             <a class="collapsible-header">Pesquisa<i class="material-icons">search</i></a>
+                <div class="collapsible-body">
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <input id="search-title"  type="text">
+                            <label for="search-title">Título</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class=" input-field col s10">
+                            
+                                <input id="search-date-begin"  type="date">
+                            
+                                 <input id="search-date-end" type="date">
+                             
+                            <label for="search-title">Período</label>
+                        </div>
+                    </div>
+                    
+                                
+                </div>
+                </li>
+            </ul>
+
+        </li>
+            
         <li><a href="#!">Second Link</a></li>
         <li><div class="divider"></div></li>
         <li><a class="subheader">Subheader</a></li>

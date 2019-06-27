@@ -1,9 +1,23 @@
 <button  class="dropdown-trigger waves-effect waves-teal btn-flat" data-target='configs'><i class="material-icons">more_vert</i></button>
 <ul id="configs" class="dropdown-content">
-    <li><button class="waves-effect waves-teal btn-flat" id="search"><i class="material-icons">search</i></button></li>
-    <li><button class="waves-effect waves-teal btn-flat" id="filters"><i class="material-icons">filter</i></button></li>
+    <li><button class="waves-effect waves-teal btn-flat tooltipped modal-trigger" id="close"  data-position="left" data-tooltip="Fechar"  >
+        <i class="material-icons">close</i></button>
+    </li>
+    <li><button class="waves-effect waves-teal btn-flat tooltipped modal-trigger" id="search-title" data-position="left" data-tooltip="Pesquisa por Título" data-target="modal-search-title">
+        <i class="material-icons">search</i></button>
+    </li>
+    <li><button class="waves-effect waves-teal btn-flat tooltipped modal-trigger" id="seach-date-actual" data-position="left" data-tooltip="Pesquisa por Criação" data-target="modal-search-actual">
+        <i class="material-icons">event_note</i></button>
+    </li>
+    <li><button class="waves-effect waves-teal btn-flat tooltipped modal-trigger" id="search-date-end" data-position="left" data-tooltip="Pesquisa por Prazo" data-target="modal-search-end">
+        <i class="material-icons">event</i>
+    </button></li>
     <li class="divider" tabindex="-1"></li>
-    <li><button class="waves-effect waves-teal btn-flat" id="setings"><i class="material-icons">settings</i></button></li>
-    <li><button class="waves-effect waves-teal btn-flat" id="about"><i class="material-icons">info</i></button></li>
+    <li><button class="waves-effect waves-teal btn-flat tooltipped modal-trigger" id="setings" data-position="left" data-tooltip="Consigurações">
+        <i class="material-icons">settings</i></button>
+    </li>
+    <li><button class="waves-effect waves-teal btn-flat tooltipped modal-trigger" id="about" data-position="left" data-tooltip="Sobre">
+        <i class="material-icons">info</i></button>
+    </li>
     
 </ul>

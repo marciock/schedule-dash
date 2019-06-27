@@ -41,6 +41,14 @@ module.exports={
             });
         });
     },
+    search:(req,res)=>{
+        let data=req.body.data;
+        console.log(`search - ${data}`)
+       
+        modelSchedule.find({})
+        .then(results=>res.json(results))
+        .catch(err=>res.send(err));
+    },
     show: (req,res)=>{
         let id=req.params.id
         modelSchedule.findOne({_id:id}, (err,data)=>{

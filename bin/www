@@ -60,9 +60,24 @@ io.on('connection',socket=>{
       })
 
     })
+
+
+    socket.on('actual',(data)=>{
+      let start=Date(data.start);
+      let end=Date(data.end);
+     console.log(`actual- ${start}`)
+     
+      schemita.find({'dateactual':{$gte:start,$lte:end}})
+      .then((results)=>{
+        console.log(results);
+      }) 
+      
+    })
+
+
   })
   
-  
+ 
 /**
  * Normalize a port into a number, string, or false.
  */

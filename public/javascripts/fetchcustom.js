@@ -39,7 +39,7 @@ const fecthFindSchedule=(url,element)=>{
     console.log(dateE)
   
 
-     li.innerHTML=collapsibleHB(f._id,f.title,dateA,dateE,f.description);
+     li.innerHTML=collapsibleHB(f._id,f.title,f.dateactual,f.dateend,f.description);
 
      el.appendChild(li);
      
@@ -82,7 +82,7 @@ const fecthSearchSchedule=(url,params,element)=>{
     console.log(dateE)
   
 
-     li.innerHTML=collapsibleHB(f._id,f.title,dateA,dateE,f.description);
+     li.innerHTML=collapsibleHB(f._id,f.title,f.dateactual,f.dateend,f.description);
 
      el.appendChild(li);
      
@@ -132,14 +132,15 @@ const fetchItens=(url,params,element)=>{
 }
 
 const collapsibleLI=(id,title,actual,end,description)=>{
-
+  let a=new Date(Date.parse(actual));
+  let e=new Date(Date.parse(end));
   let conca=` 
   <li>  
     <div class="collapsible-header">
 
     <div class="col s4"><p class="flow-text">${title}</p></div>
-    <div class="col s2"><p class="flow-text">${actual}</p></div>
-    <div class="col s2"><p class="flow-text">${end}</p></div>
+    <div class="col s2"><p class="flow-text">${a.toLocaleDateString('pt-BR')}</p></div>
+    <div class="col s2"><p class="flow-text">${e.toLocaleDateString('pt-BR')}</p></div>
     <div class="col s2 center-align"><p class="flow-text">Alta</p></div>
     <div class="col s2 center-align">
         <div class="switch"> <label><input type="checkbox" checked id="${id}" onchange="deActive('${id}')")><span class="lever"></span></label></div>
@@ -159,14 +160,15 @@ const collapsibleLI=(id,title,actual,end,description)=>{
 
 }
 const collapsibleHB=(id,title,actual,end,description)=>{
-
+let a=new Date(Date.parse(actual));
+let e=new Date(Date.parse(end));
   let conca=` 
    
     <div class="collapsible-header">
 
     <div class="col s4"><p class="flow-text">${title}</p></div>
-    <div class="col s2"><p class="flow-text">${actual}</p></div>
-    <div class="col s2"><p class="flow-text">${end}</p></div>
+    <div class="col s2"><p class="flow-text">${a.toLocaleDateString('pt-BR')}</p></div>
+    <div class="col s2"><p class="flow-text">${e.toLocaleDateString('pt-BR')}</p></div>
     <div class="col s2 center-align"><p class="flow-text">Alta</p></div>
     <div class="col s2 center-align">
         <div class="switch"> <label><input type="checkbox" checked id="${id}" onchange="deActive('${id}')")><span class="lever"></span></label></div>

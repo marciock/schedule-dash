@@ -49,6 +49,15 @@ module.exports={
         .then(results=>res.json(results))
         .catch(err=>res.send(err));
     },
+    searchActual:(req,res)=>{
+        let start=req.body.start;
+        let end=req.body.end;
+        console.log(`search - ${data}`)
+       
+        modelSchedule.find({dateactual:{$gte:start,$lte:end}})
+        .then(results=>res.json(results))
+        .catch(err=>res.send(err));
+    },
     show: (req,res)=>{
         let id=req.params.id
         modelSchedule.findOne({_id:id}, (err,data)=>{

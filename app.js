@@ -9,6 +9,7 @@ const saveRouter = require('./routes/save');
 const findRouter = require('./routes/find');
 const updateRouter = require('./routes/update');
 const searchRouter = require('./routes/search');
+const searchActualRouter = require('./routes/search_actual');
 
 const bodyParser=require('body-parser');
 
@@ -40,6 +41,7 @@ app.use('/save', saveRouter);
 app.use('/find', findRouter);
 app.use('/update', updateRouter);
 app.use('/search', searchRouter);
+app.use('/search_actual', searchActualRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
